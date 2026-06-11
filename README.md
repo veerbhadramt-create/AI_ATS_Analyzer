@@ -1,81 +1,82 @@
-# AI ATS Resume Optimizer & Analyzer
+# 🎯 AI ATS Resume Optimizer & Analyzer
 
-An advanced, premium-design AI-powered ATS (Applicant Tracking System) Resume Analyzer built entirely in **Python** using **Streamlit** and the official **Google Gemini API**. 
+[![Streamlit App](https://static.streamlit.io/badge-hosted-badge.svg)](https://aiatsanalyzer-a2e2n8mgoatzet8spk4fm7.streamlit.app/)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-This application parses resumes, extracts content, analyzes them against specific job descriptions, and calculates matching scores, highlights missing keywords, identifies strengths, and provides actionable recommendations to optimize application success.
+A premium, interactive AI-powered Applicant Tracking System (ATS) Resume Analyzer. This application leverages the power of **Google Gemini API** to analyze, score, and optimize resumes against job descriptions, helping job seekers bridge keyword gaps and stand out to recruiters.
+
+🔗 **Live Link:** [https://aiatsanalyzer-a2e2n8mgoatzet8spk4fm7.streamlit.app/](https://aiatsanalyzer-a2e2n8mgoatzet8spk4fm7.streamlit.app/)
 
 ---
 
 ## 🌟 Key Features
 
-- **📄 Dynamic PDF Parsing**: Drag-and-drop or select any `.pdf` resume file to automatically extract text locally using the `pypdf` module.
-- **✍️ Manual Text Input Option**: Paste resume details directly or modify extracted text in real-time.
-- **📊 ATS Scoring Dashboard**: A beautiful, animated custom SVG radial gauge score indicator that dynamically changes color based on match levels:
-  - 🟢 **80+**: Good/Excellent Match
-  - 🟡 **60-79**: Moderate Match
-  - 🔴 **Below 60**: Needs Improvement
-- **🏷️ Keyword Identification**: Detects critical skills, terms, and tools mentioned in the Job Description but missing from your resume.
-- **⚡ Actionable Recommendations**: Detailed recommendations to optimize resume layouts, formatting, and wording.
-- **💪 Match Strengths**: Highlights where your resume aligns exceptionally well with the job listing.
-- **🧪 Interactive Demo Mode**: Switch to "Demo Mode" instantly to show simulated analysis reports using real developer data, removing the friction of entering API keys during showcases.
-- **🔒 API Privacy**: Your Gemini API key is stored securely in streamlit session state/local browser and is never cached in any external database.
+*   **📄 Intelligent PDF Parser:** Drag-and-drop or select any `.pdf` resume file to automatically extract text locally using the `pypdf` library.
+*   **✍️ Real-Time Editing:** Adjust extracted resume content dynamically before initiating AI analysis.
+*   **📊 Dynamic ATS Scoring Dashboard:** Custom-built SVG radial gauge score indicator that dynamically changes color based on match level:
+    *   🟢 **80+ Score:** Strong Match (Ready for submission)
+    *   🟡 **60-79 Score:** Moderate Match (Needs minor keyword optimization)
+    *   🔴 **Below 60 Score:** Low Match (Needs significant alignment)
+*   **🏷️ Intelligent Keyword Analysis:** Extracts critical skills, certifications, and technologies missing from your resume compared to the job description.
+*   **⚡ Recruiter Feedback:** Generates structured summary reports simulating a recruiter's evaluation.
+*   **💡 Actionable Recommendations:** Pinpoints exact revisions needed to elevate your resume score.
+
+---
+
+## 🎨 Theme & UI Design
+
+*   **Wheat & Light Theme:** Beautiful, warm, and highly readable light cream aesthetic (`#FCFAF7` background) with rich brown typography (`#3E2723` & `#5D4037`) for a premium professional feel.
+*   **Glassmorphism Cards:** Soft translucent cards with gentle shadows and golden-wheat borders.
+*   **Responsive Control Panel:** Customized Streamlit widgets, file dropzones, and text fields custom-styled to fit the theme seamlessly.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Frontend & Backend UI**: Streamlit (Python Web Application framework)
-- **AI Core Engine**: Google Gemini 1.5 Flash (via official `google-generativeai` SDK)
-- **PDF Text Processing**: `pypdf`
-- **Environment Management**: `python-dotenv`
+*   **Frontend & UI:** Python, Streamlit, Custom CSS Injection
+*   **AI Engine:** Google Gemini 1.5 Flash (via `google-generativeai`)
+*   **Document Parsing:** `pypdf` (local file extraction)
+*   **Environment Management:** `python-dotenv`
 
 ---
 
-## 🚀 Getting Started (Run Locally)
+## 🚀 Local Setup & Installation
 
-### 1. Clone or Open the Directory
-Open your terminal inside this project folder:
+### Prerequisites
+- Python 3.8 or higher installed.
+
+### 1. Clone the Repository
 ```bash
-cd AI_ATS_Resume_Analyzer
+git clone https://github.com/veerbhadramt-create/AI_ATS_Analyzer.git
+cd AI_ATS_Analyzer
 ```
 
 ### 2. Install Dependencies
-Install all required libraries using:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the App
-Start the Streamlit development server:
-```bash
-streamlit run app.py
+### 3. Set Up Environment Variables
+Create a `.env` file in the root directory:
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
-*(Alternatively, you can run `streamlit run Atsresume..py`)*
 
-The server will spin up and open `http://localhost:8501` automatically in your browser.
-
----
-
-## 🌍 How to Deploy (Netlify or Streamlit Cloud)
-
-### Option 1: Streamlit Community Cloud (Recommended & Instant for Python)
-1. Push this codebase to a public GitHub repository.
-2. Go to [Streamlit Share](https://share.streamlit.io/).
-3. Connect your GitHub account, select this repo, and choose `app.py` as the main entry point.
-4. Click **Deploy**. Your app will be live with a shareable URL in 2 minutes!
+### 4. Run the Application
+```bash
+python -m streamlit run app.py
+```
+Your local server will boot up and automatically launch at `http://localhost:8501`.
 
 ---
 
-## 🎓 Interview Prep Cheat Sheet (For recruiters & hiring managers)
+## 🎓 Recruiter & Interview Cheat Sheet
 
-### 1. Problem Statement
-> *"Many candidates fail recruiter screening stages because applicant tracking systems (ATS) discard resumes that lack specific keywords, even if the candidate is qualified. My app helps candidates find gaps and optimize their resume to beat these screening algorithms."*
+### 1. System Architecture & Flow
+The user uploads a PDF resume which is parsed locally using Python's `pypdf` library. The extracted text is combined with the user's targeted job description and sent to the Gemini 1.5 Flash model with a strictly structured prompt requesting JSON output. The app parses the JSON and renders it into a custom styled dashboard featuring custom SVG charts.
 
-### 2. Why Python and Streamlit?
-> *"I selected Python and Streamlit because they allowed me to create a fully working AI tool with an elegant, responsive interface in record time, without the overhead of JavaScript build configurations. It lets me focus 100% on the core AI integration, PDF text parsing, and analytical layout."*
+### 2. Prompt Engineering & Reliability
+To ensure the application never crashes, Gemini is instructed to output a raw JSON structure matching a precise schema. We parse this output cleanly and handle exceptions gracefully, showing clear debugging suggestions if the API call fails.
 
-### 3. AI Decisions & Prompt Engineering
-> *"I leveraged the Gemini 1.5 Flash model because of its high context window and speed. I configured it to return a structured JSON string by setting the `response_mime_type` to `application/json` in the configuration. This guarantees that the response conforms to my custom schema, making UI card rendering 100% crash-free."*
-
-### 4. Technical Challenges Overcome
-> *"A primary challenge was ensuring the app was testable for interviewers who didn't want to sign up for Google AI Studio keys. I designed a toggleable 'Demo Mode' that bypasses the live API call and returns a high-fidelity simulated analysis, demonstrating the complete UI flow and SVG progress gauges instantly."*
+### 3. Design decisions
+Standard Streamlit applications look generic. In this project, custom CSS is injected to implement a premium **Wheat & Light Theme** using CSS variables, creating an eye-catching, responsive interface that feels like a standalone modern SaaS application.
